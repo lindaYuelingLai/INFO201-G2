@@ -25,6 +25,7 @@ server <- function(input, output) {
         theme(axis.text.x=element_text(size=rel(1), angle=90))
       return(result_plot)
     }
+    race_by_state(input$race)
   })
   
   # get the subset for the selected variable
