@@ -64,7 +64,6 @@ race_by_armed <- function(the_race) {
 race_data <- reactive({
   shooting_data %>% group_by(race) %>% summarise(n = n()) %>% arrange(desc(n))
 })
-}
 
 race_by_mental_illness <- function(the_race) {
   if (the_race == "W") title <- "White"
@@ -89,5 +88,6 @@ race_by_mental_illness <- function(the_race) {
 race_data <- reactive({
   shooting_data %>% group_by(race) %>% summarise(n = n()) %>% arrange(desc(n))
 })
+}
 
 shinyServer(server)
