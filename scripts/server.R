@@ -1,12 +1,11 @@
 library(shiny)
 library(dplyr)
 library(ggplot2)
-shooting_data <- read.csv("shootings_data.csv", stringsAsFactors = FALSE)
 
 server <- function(input, output) {
-<<<<<<< HEAD
   shooting_data <- read.csv("shootings_data.csv", stringsAsFactors = FALSE)
   
+  # return bar graph for the specified race, grouped by state
   race_by_state <- function(the_race) {
     if (the_race == "W") title <- "White"
     if (the_race == "B") title <- "Black"
@@ -25,12 +24,11 @@ server <- function(input, output) {
       theme(axis.text.x=element_text(size=rel(1), angle=90))
     return(result_plot)
   }
-=======
+  
   # get the subset for the selected variable
   race_data <- reactive({
     shooting_data %>% group_by(race) %>% summarise(n = n()) %>% arrange(desc(n))
   })
->>>>>>> cd30d64458b2130968e791580d604fe294a2cca1
 }
 
 shinyServer(server)
