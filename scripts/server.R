@@ -31,17 +31,15 @@ server <- function(input, output) {
   race_data <- reactive({
     shooting_data %>% group_by(race) %>% summarise(n = n()) %>% arrange(desc(n))
   })
-
-armed_data <- shooting_data %>% group_by(armed) %>% summarise(n = n()) %>% arrange(desc(n))
-
+  
 race_by_armed <- function(the_race) {
   if (the_race == "W") title <- "White"
   if (the_race == "B") title <- "Black"
   if (the_race == "H") title <- "Hispanic"
   if (the_race == "A") title <- "Asian"
   if (the_race == "N") title <- "Native American"
-  armed_data <- filter(armed_data, race == the_race)
-  armed_data[armed_data$armed!= "unarmed" | armed_data$armed!= "gun"] <- "other"
+  armed_data <- filter(shooting_data, race == the_race)
+  armed_data[armed_data != "unarmed" & armed_data != "gun"] <- "other"
   armed_data <- armed_data%>% group_by(armed) %>% summarise(n = n()) %>% arrange(desc(n))
   result_plot <- ggplot(armed_data, aes(armed_data, x = armed, y = n)) +
     geom_bar(stat="identity", width = 1) +
