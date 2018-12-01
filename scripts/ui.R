@@ -8,8 +8,8 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       radioButtons("race", h3("Select a race:"),
-                   c("All" = "all","White" = "white","Black" = "black","Asian"="asian",
-                     "Native American"="native","Hispanic"="hispanic")),
+                   c("All" = "all","White" = "W","Black" = "B","Asian"="A",
+                     "Native American"="N","Hispanic"="H")),
       selectInput("factors", h3("Other factors describing victim:"), 
                   c("Armed"="arm","Signs of Mental Illness"="mental","Threat Level"="threat","Fleeing"="flee"), 
                   selected = NULL, multiple = FALSE,
