@@ -40,30 +40,30 @@ server <- function(input, output) {
     shooting_data %>% group_by(race) %>% summarise(n = n()) %>% arrange(desc(n))
   })
   
-race_by_armed <- function(the_race) {
-  if (the_race == "W") title <- "White"
-  if (the_race == "B") title <- "Black"
-  if (the_race == "H") title <- "Hispanic"
-  if (the_race == "A") title <- "Asian"
-  if (the_race == "N") title <- "Native American"
-  armed_data <- filter(shooting_data, race == the_race)
-  armed_data[armed_data != "unarmed" & armed_data != "gun"] <- "other"
-  armed_data <- armed_data%>% group_by(armed) %>% summarise(n = n()) %>% arrange(desc(n))
-  result_plot <- ggplot(armed_data, aes(armed_data, x = armed, y = n)) +
-    geom_bar(stat="identity", width = 1) +
-    labs(
-      title = paste0("Fatal Shootings by Armed / Unarmed, ", title),
-      x = "Armed?",
-      y = "Reports"
-    ) +
-    theme(axis.text.x=element_text(size=rel(1), angle=90))
-  return(result_plot)
-}
-
-# get the subset for the selected variable
-race_data <- reactive({
-  shooting_data %>% group_by(race) %>% summarise(n = n()) %>% arrange(desc(n))
-})
+  race_by_armed <- function(the_race) {
+    if (the_race == "W") title <- "White"
+    if (the_race == "B") title <- "Black"
+    if (the_race == "H") title <- "Hispanic"
+    if (the_race == "A") title <- "Asian"
+    if (the_race == "N") title <- "Native American"
+    armed_data <- filter(shooting_data, race == the_race)
+    armed_data[armed_data != "unarmed" & armed_data != "gun"] <- "other"
+    armed_data <- armed_data%>% group_by(armed) %>% summarise(n = n()) %>% arrange(desc(n))
+    result_plot <- ggplot(armed_data, aes(armed_data, x = armed, y = n)) +
+      geom_bar(stat="identity", width = 1) +
+      labs(
+        title = paste0("Fatal Shootings by Armed / Unarmed, ", title),
+        x = "Armed?",
+        y = "Reports"
+      ) +
+      theme(axis.text.x=element_text(size=rel(1), angle=90))
+    return(result_plot)
+  }
+  
+  # get the subset for the selected variable
+  race_data <- reactive({
+    shooting_data %>% group_by(race) %>% summarise(n = n()) %>% arrange(desc(n))
+  })
 }
 
 race_by_mental_illness <- function(the_race) {
