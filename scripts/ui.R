@@ -23,7 +23,8 @@ ui <- pageWithSidebar(
   mainPanel(
     tabsetPanel(
       tabPanel("Summary", textOutput("summary")),
-      tabPanel("Plot (race as a variable)", plotOutput("statePlot"), plotOutput("factorsPlot"))
+      tabPanel("Plot (race as a variable)", plotOutput("statePlot"), plotOutput("factorsPlot")),
+      tabPanel("Plot (race as a constant)", plotOutput("racePlot"))
     )
   )
 )

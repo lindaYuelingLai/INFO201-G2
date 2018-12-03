@@ -9,7 +9,7 @@ server <- function(input, output) {
   output$statePlot <- renderPlot({
     race_by_state <- function(the_race) {
       title <- ""
-      race_data <- shooting_data
+      state_data <- shooting_data
       if (the_race == "all") {
         title <- "All Races"
       } else {
@@ -18,10 +18,10 @@ server <- function(input, output) {
         if (the_race == "H") title <- "Hispanic"
         if (the_race == "A") title <- "Asian"
         if (the_race == "N") title <- "Native American"
-        race_data <- filter(race_data, race == the_race)
+        state_data <- filter(state_data, race == the_race)
       }
-      race_data <- race_data %>% group_by(state) %>% summarise(n = n()) %>% arrange(desc(n))
-      result_plot <- ggplot(race_data, aes(race_data, x = state, y = n)) +
+      state_data <- state_data %>% group_by(state) %>% summarise(n = n()) %>% arrange(desc(n))
+      result_plot <- ggplot(state_data, aes(state_data, x = state, y = n)) +
         geom_bar(stat="identity", width = 1) +
         labs(
           title = paste0("Fatal Shootings by State, ", title),
@@ -147,6 +147,15 @@ server <- function(input, output) {
   # print out a textual summary
   output$summary <- renderText({
     paste0("")
+  })
+  
+  output$racePlot <- renderPlot({
+    race_data <- shooting_data %>% group_by(race) %>% summarise(n = n()) %>% arrange(desc(n))
+    # PieChart
+    bp<- ggplot(race_data, aes(race_data, x="race", y=n, fill=race))+
+      geom_bar(width = 1, stat = "identity")
+    pie <- bp + coord_polar("y", start=0)
+    pie
   })
 }
 
