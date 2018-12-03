@@ -100,11 +100,7 @@ server <- function(input, output) {
         if (the_race == "N") title <- "Native American"
         flee_data <- filter(race_data, race == the_race)
       }
-<<<<<<< HEAD
-      flee_data<- filter(shooting_data, race == the_race)
       flee_data[flee_data != "Not fleeing"] <- "Fleeing"
-=======
->>>>>>> b9607a78e1a18c53b31808d750b2fcf809f7f985
       flee_data <- flee_data%>% group_by(flee) %>% summarise(n = n()) %>% arrange(desc(n))
       result_plot <- ggplot(flee_data, aes(flee, x = flee, y = n)) +
         geom_bar(stat="identity", width = 1) +
@@ -117,10 +113,10 @@ server <- function(input, output) {
       return(result_plot)
     }
       
-    if (input$factors=="armed"){ race_by_armed(input$race) }
-    if (input$factors=="mental") { race_by_mental_illness(input$race) }
-    if (input$factors=="threat") { race_by_threat(input$race) }
-    if (input$factors=="flee") { race_by_flee(input$race) }
+    if (input$factors=="armed"){ print(race_by_armed(input$race)) }
+    if (input$factors=="mental") { print(race_by_mental_illness(input$race)) }
+    if (input$factors=="threat") { print(race_by_threat(input$race)) }
+    if (input$factors=="flee") { print(race_by_flee(input$race)) }
   })
 }
 
