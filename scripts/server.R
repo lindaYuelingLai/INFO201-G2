@@ -4,7 +4,6 @@ library(ggplot2)
 
 server <- function(input, output) {
   shooting_data <- read.csv("../shootings_data.csv", stringsAsFactors = FALSE)
-  
   # return bar graph for the specified race, grouped by state
   output$statePlot <- renderPlot({
     race_by_state <- function(the_race) {
@@ -34,11 +33,6 @@ server <- function(input, output) {
     race_by_state(input$race)
   })
   
-  # get the subset for the selected variable
-  race_data <- reactive({
-    shooting_data %>% group_by(race) %>% summarise(n = n()) %>% arrange(desc(n))
-  })
-  
   race_by_armed <- function(the_race) {
     title <- ""
     race_data <- shooting_data
@@ -52,7 +46,6 @@ server <- function(input, output) {
       if (the_race == "N") title <- "Native American"
       race_data <- filter(race_data, race == the_race)
     }
-    armed_data <- filter(race_data, race == the_race)
     armed_data[armed_data != "unarmed" & armed_data != "gun"] <- "other"
     armed_data <- armed_data%>% group_by(armed) %>% summarise(n = n()) %>% arrange(desc(n))
     result_plot <- ggplot(armed_data, aes(armed_data, x = armed, y = n)) +
@@ -79,7 +72,6 @@ server <- function(input, output) {
       if (the_race == "N") title <- "Native American"
       race_data <- filter(race_data, race == the_race)
     }
-    mi_data <- filter(race_data, race == the_race)
     mi_data <- mi_data%>% group_by(signs_of_mental_illness) %>% summarise(n = n()) %>% arrange(desc(n))
     result_plot <- ggplot(mi_data, aes(signs_of_mental_illness, x = signs_of_mental_illness, y = n)) +
       geom_bar(stat="identity", width = 1) +
@@ -92,10 +84,30 @@ server <- function(input, output) {
     return(result_plot)
   }
   
-  # get the subset for the selected variable
-  race_data <- reactive({
-    shooting_data %>% group_by(race) %>% summarise(n = n()) %>% arrange(desc(n))
-  })
+  race_by_threat <- function(threat_level) {
+    title <- ""
+    race_data <- shooting_data
+    if (the_race == "all") {
+      title <- "All Races"
+    } else {
+      if (the_race == "W") title <- "White"
+      if (the_race == "B") title <- "Black"
+      if (the_race == "H") title <- "Hispanic"
+      if (the_race == "A") title <- "Asian"
+      if (the_race == "N") title <- "Native American"
+      race_data <- filter(race_data, race == the_race)
+    }
+    threat_data <- threat_data%>% group_by(threat_level) %>% summarise(n = n()) %>% arrange(desc(n))
+    result_plot <- ggplot(threat_data, aes(threat_data, x = threat_level, y = n)) +
+      geom_bar(stat="identity", width = 1) +
+      labs(
+        title = paste0("Fatal Shootings by Threat Levels: ", title),
+        x = "Threat Levels",
+        y = "Reports"
+      ) +
+      theme(axis.text.x=element_text(size=rel(1), angle=90))
+    return(result_plot)
+  }
 }
 
 shinyServer(server)
