@@ -11,7 +11,7 @@ ui <- fluidPage(
                    c("All" = "all","White" = "W","Black" = "B","Asian"="A",
                      "Native American"="N","Hispanic"="H")),
       selectInput("factors", h3("Other factors describing victim:"), 
-                  c("Armed"="arm","Signs of Mental Illness"="mental","Threat Level"="threat","Fleeing"="flee"), 
+                  c("Armed"="armed","Signs of Mental Illness"="mental","Threat Level"="threat","Fleeing"="flee"), 
                   selected = NULL, multiple = FALSE,
                   selectize = TRUE, width = NULL, size = NULL)
       ),
