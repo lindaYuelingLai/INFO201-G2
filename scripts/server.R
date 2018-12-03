@@ -82,6 +82,30 @@ server <- function(input, output) {
   race_data <- reactive({
     shooting_data %>% group_by(race) %>% summarise(n = n()) %>% arrange(desc(n))
   })
+  
+  race_by_flee <- function(the_race) {
+    if (the_race == "W") title <- "White"
+    if (the_race == "B") title <- "Black"
+    if (the_race == "H") title <- "Hispanic"
+    if (the_race == "A") title <- "Asian"
+    if (the_race == "N") title <- "Native American"
+    mi_data<- filter(shooting_data, race == the_race)
+    mi_data <- mi_data%>% group_by(flee) %>% summarise(n = n()) %>% arrange(desc(n))
+    result_plot <- ggplot(mi_data, aes(flee, x = flee, y = n)) +
+      geom_bar(stat="identity", width = 1) +
+      labs(
+        title = paste0("Fatal Shootings by Fleeing: ", title),
+        x = "Fleeing",
+        y = "Reports"
+      ) +
+      theme(axis.text.x=element_text(size=rel(1), angle=90))
+    return(result_plot)
+  }
+  
+  # get the subset for the selected variable
+  race_data <- reactive({
+    shooting_data %>% group_by(race) %>% summarise(n = n()) %>% arrange(desc(n))
+  })
 }
 
 shinyServer(server)
