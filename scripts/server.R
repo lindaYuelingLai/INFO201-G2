@@ -21,7 +21,7 @@ server <- function(input, output) {
         state_data <- filter(state_data, race == the_race)
       }
       state_data <- state_data %>% group_by(state) %>% summarise(n = n()) %>% arrange(desc(n))
-      result_plot <- ggplot(state_data, aes(state_data, x = state, y = n)) +
+      result_plot <- ggplot(state_data, aes(state_data, x = state, y = n, fill=state)) +
         geom_bar(stat="identity", width = 1) +
         labs(
           fill="State",
