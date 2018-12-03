@@ -50,7 +50,7 @@ server <- function(input, output) {
         armed_data <- filter(armed_data, race == the_race)
       }
         armed_data[armed_data != "unarmed" & armed_data != "gun"] <- "other"
-        armed_data <- armed_data%>% group_by(armed) %>% summarise(n = n()) %>% arrange(desc(n))
+        armed_data <- armed_data %>% group_by(armed) %>% summarise(n = n()) %>% arrange(desc(n))
         result_plot <- ggplot(armed_data, aes(armed_data, x = armed, y = n)) +
           geom_bar(stat="identity", width = 1) +
           labs(
@@ -124,7 +124,7 @@ server <- function(input, output) {
         if (the_race == "H") title <- "Hispanic"
         if (the_race == "A") title <- "Asian"
         if (the_race == "N") title <- "Native American"
-        threat_data <- filter(race_data, race == the_race)
+        threat_data <- filter(threat_data, race == the_race)
       }
       threat_data <- threat_data%>% group_by(threat_level) %>% summarise(n = n()) %>% arrange(desc(n))
       result_plot <- ggplot(threat_data, aes(threat_data, x = threat_level, y = n)) +
@@ -138,10 +138,10 @@ server <- function(input, output) {
       return(result_plot)
     }
     
-    if (input$factors=="armed"){ race_by_armed(input$race) }
-    if (input$factors=="mental") { race_by_mental_illness(input$race) }
-    if (input$factors=="threat") { race_by_threat(input$race) }
-    if (input$factors=="flee") { race_by_flee(input$race) }
+    if (input$factors=="armed"){ print(race_by_armed(input$race)) }
+    if (input$factors=="mental") { print(race_by_mental_illness(input$race)) }
+    if (input$factors=="threat") { print(race_by_threat(input$race)) }
+    if (input$factors=="flee") { print(race_by_flee(input$race)) }
   })
 }
 
