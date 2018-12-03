@@ -124,7 +124,7 @@ server <- function(input, output) {
         if (the_race == "H") title <- "Hispanic"
         if (the_race == "A") title <- "Asian"
         if (the_race == "N") title <- "Native American"
-        threat_data <- filter(race_data, race == the_race)
+        threat_data <- filter(threat_data, race == the_race)
       }
       threat_data <- threat_data%>% group_by(threat_level) %>% summarise(n = n()) %>% arrange(desc(n))
       result_plot <- ggplot(threat_data, aes(threat_data, x = threat_level, y = n)) +
