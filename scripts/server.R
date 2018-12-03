@@ -108,11 +108,12 @@ server <- function(input, output) {
         race_data <- filter(race_data, race == the_race)
       }
       flee_data<- filter(shooting_data, race == the_race)
+      flee_data[flee_data != "Not fleeing"] <- "Fleeing"
       flee_data <- flee_data%>% group_by(flee) %>% summarise(n = n()) %>% arrange(desc(n))
       result_plot <- ggplot(flee_data, aes(flee, x = flee, y = n)) +
         geom_bar(stat="identity", width = 1) +
         labs(
-          title = paste0("Fatal Shootings by Fleeing: ", title),
+          title = paste0("Fatal Shootings by Fleeing / Not Fleeing", title),
           x = "Fleeing",
           y = "Reports"
         ) +
