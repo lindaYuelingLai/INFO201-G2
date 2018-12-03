@@ -105,7 +105,7 @@ server <- function(input, output) {
       result_plot <- ggplot(flee_data, aes(flee, x = flee, y = n)) +
         geom_bar(stat="identity", width = 1) +
         labs(
-          title = paste0("Fatal Shootings by Fleeing / Not Fleeing", title),
+          title = paste0("Fatal Shootings by Fleeing / Not Fleeing, ", title),
           x = "Fleeing",
           y = "Reports"
         ) +
@@ -113,7 +113,7 @@ server <- function(input, output) {
       return(result_plot)
     }
 
-    race_by_threat <- function(threat_level) {
+    race_by_threat <- function(the_race) {
       title <- ""
       threat_data <- shooting_data
       if (the_race == "all") {
