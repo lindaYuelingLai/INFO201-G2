@@ -16,7 +16,8 @@ ui <- fluidPage(
                   selectize = TRUE, width = NULL, size = NULL)
       ),
     mainPanel(
-      plotOutput("statePlot")
+      plotOutput("statePlot"),
+      plotOutput("factorsPlot")
     )
   )
 )
