@@ -112,14 +112,7 @@ server <- function(input, output) {
         theme(axis.text.x=element_text(size=rel(1), angle=90))
       return(result_plot)
     }
-<<<<<<< HEAD
-      
-    if (input$factors=="armed"){ print(race_by_armed(input$race)) }
-    if (input$factors=="mental") { print(race_by_mental_illness(input$race)) }
-    if (input$factors=="threat") { print(race_by_threat(input$race)) }
-    if (input$factors=="flee") { print(race_by_flee(input$race)) }
-=======
-    
+
     race_by_threat <- function(threat_level) {
       title <- ""
       threat_data <- shooting_data
@@ -144,11 +137,11 @@ server <- function(input, output) {
         theme(axis.text.x=element_text(size=rel(1), angle=90))
       return(result_plot)
     }
+    
     if (input$factors=="armed"){ race_by_armed(input$race) }
     if (input$factors=="mental") { race_by_mental_illness(input$race) }
     if (input$factors=="threat") { race_by_threat(input$race) }
     if (input$factors=="flee") { race_by_flee(input$race) }
->>>>>>> a304a0253333a95ddbf1d32791072d26a68671bc
   })
 }
 
