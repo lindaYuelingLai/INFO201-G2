@@ -143,6 +143,11 @@ server <- function(input, output) {
     if (input$factors=="threat") { print(race_by_threat(input$race)) }
     if (input$factors=="flee") { print(race_by_flee(input$race)) }
   })
+  
+  # print out a textual summary
+  output$summary <- renderText({
+    paste0("")
+  })
 }
 
 shinyServer(server)
