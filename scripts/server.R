@@ -24,6 +24,7 @@ server <- function(input, output) {
       result_plot <- ggplot(state_data, aes(state_data, x = state, y = n)) +
         geom_bar(stat="identity", width = 1) +
         labs(
+          fill="State",
           title = paste0("Fatal Shootings by State, ", title),
           x = "State",
           y = "Reports"
@@ -51,9 +52,10 @@ server <- function(input, output) {
       }
         armed_data[armed_data != "unarmed" & armed_data != "gun"] <- "other"
         armed_data <- armed_data %>% group_by(armed) %>% summarise(n = n()) %>% arrange(desc(n))
-        result_plot <- ggplot(armed_data, aes(armed_data, x = armed, y = n)) +
+        result_plot <- ggplot(armed_data, aes(armed_data, x = armed, y = n,fill=armed)) +
           geom_bar(stat="identity", width = 1) +
           labs(
+            fill="",
             title = paste0("Fatal Shootings by Armed / Unarmed, ", title),
             x = "Armed?",
             y = "Reports"
@@ -76,9 +78,10 @@ server <- function(input, output) {
         mi_data <- filter(mi_data, race == the_race)
       }
         mi_data <- mi_data%>% group_by(signs_of_mental_illness) %>% summarise(n = n()) %>% arrange(desc(n))
-        result_plot <- ggplot(mi_data, aes(signs_of_mental_illness, x = signs_of_mental_illness, y = n)) +
+        result_plot <- ggplot(mi_data, aes(signs_of_mental_illness, x = signs_of_mental_illness, y = n, fill=signs_of_mental_illness)) +
           geom_bar(stat="identity", width = 1) +
           labs(
+            fill="",
             title = paste0("Fatal Shootings by Perceived Mental Illness: ", title),
             x = "Mental Illness",
             y = "Reports"
@@ -102,9 +105,10 @@ server <- function(input, output) {
       }
       flee_data[flee_data != "Not fleeing"] <- "Fleeing"
       flee_data <- flee_data%>% group_by(flee) %>% summarise(n = n()) %>% arrange(desc(n))
-      result_plot <- ggplot(flee_data, aes(flee, x = flee, y = n)) +
+      result_plot <- ggplot(flee_data, aes(flee, x = flee, y = n, fill=flee)) +
         geom_bar(stat="identity", width = 1) +
         labs(
+          fill="",
           title = paste0("Fatal Shootings by Fleeing / Not Fleeing, ", title),
           x = "Fleeing",
           y = "Reports"
@@ -127,9 +131,10 @@ server <- function(input, output) {
         threat_data <- filter(threat_data, race == the_race)
       }
       threat_data <- threat_data%>% group_by(threat_level) %>% summarise(n = n()) %>% arrange(desc(n))
-      result_plot <- ggplot(threat_data, aes(threat_data, x = threat_level, y = n)) +
+      result_plot <- ggplot(threat_data, aes(threat_data, x = threat_level, y = n, fill=threat_level)) +
         geom_bar(stat="identity", width = 1) +
         labs(
+          fill="",
           title = paste0("Fatal Shootings by Threat Levels: ", title),
           x = "Threat Levels",
           y = "Reports"
