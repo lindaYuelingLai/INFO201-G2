@@ -21,10 +21,10 @@ ui <- navbarPage(title = "GROUP AF3",
                                We have filtered our dataset based on 
                                racial groups and the following factors:"),
                         tags$ul(
-                          tags$li("Armed"),
+                          tags$li("Armed / Unarmed"),
                           tags$li("Perceived Mental Illness"),
                           tags$li("Perceived Threat Level"),
-                          tags$li("Fleeing")
+                          tags$li("Fleeing / Not Fleeing")
                         ),
                         tags$p(HTML(paste0("The link to the dataset can be found ", 
                                       a(href="https://www.washingtonpost.com/graphics/national/police-shootings-2016/", 

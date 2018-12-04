@@ -29,7 +29,8 @@ server <- function(input, output) {
           x = "State",
           y = "Reports"
         ) +
-        theme(axis.text.x=element_text(size=rel(1), angle=90))
+        theme(axis.text.x=element_text(size=rel(1), angle=90),
+              plot.title=element_text(size=15,face="bold"))
       return(result_plot)
     }
     race_by_state(input$race)
@@ -57,10 +58,11 @@ server <- function(input, output) {
           labs(
             fill="",
             title = paste0("Fatal Shootings by Armed / Unarmed, ", title),
-            x = "Armed?",
+            x = "Armed / Unarmed",
             y = "Reports"
           ) +
-          theme(axis.text.x=element_text(size=rel(1), angle=90))
+          theme(axis.text.x=element_text(size=rel(1), angle=90),
+                plot.title=element_text(size=15,face="bold"))
         return(result_plot)
     }
     
@@ -86,7 +88,8 @@ server <- function(input, output) {
             x = "Mental Illness",
             y = "Reports"
           ) +
-          theme(axis.text.x=element_text(size=rel(1), angle=90))
+          theme(axis.text.x=element_text(size=rel(1), angle=90),
+                plot.title=element_text(size=15,face="bold"))
         return(result_plot)
       }
     
@@ -110,10 +113,11 @@ server <- function(input, output) {
         labs(
           fill="",
           title = paste0("Fatal Shootings by Fleeing / Not Fleeing, ", title),
-          x = "Fleeing",
+          x = "Fleeing / Not Fleeing",
           y = "Reports"
         ) +
-        theme(axis.text.x=element_text(size=rel(1), angle=90))
+        theme(axis.text.x=element_text(size=rel(1), angle=90),
+              plot.title=element_text(size=15,face="bold"))
       return(result_plot)
     }
 
@@ -135,11 +139,12 @@ server <- function(input, output) {
         geom_bar(stat="identity", width = 1) +
         labs(
           fill="",
-          title = paste0("Fatal Shootings by Threat Levels: ", title),
-          x = "Threat Levels",
+          title = paste0("Fatal Shootings by Threat Level: ", title),
+          x = "Threat Level",
           y = "Reports"
         ) +
-        theme(axis.text.x=element_text(size=rel(1), angle=90))
+        theme(axis.text.x=element_text(size=rel(1), angle=90),
+              plot.title=element_text(size=15,face="bold"))
       return(result_plot)
     }
     
