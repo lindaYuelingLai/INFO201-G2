@@ -55,7 +55,7 @@ ui <- navbarPage(title = "GROUP AF3",
                           tags$li("What can the data tell us about police and civilian relationships depending on race?")
                         )
                       )),
-             tabPanel("Bar Plots: Race by Category",
+             tabPanel("Bar Plots",
                       # Application title
                       headerPanel("Fatal Police Shootings in the US"),
                       sidebarPanel(
@@ -76,7 +76,7 @@ ui <- navbarPage(title = "GROUP AF3",
                           tabPanel("Plot Info", textOutput("summary"))
                         )
                       )),
-             tabPanel("Other Visuals: Race Only",
+             tabPanel("Other Visuals",
                       headerPanel("Fatal Police Shootings in the US"),
                       sidebarPanel(
                         h4("About the Graphs"),
