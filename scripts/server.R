@@ -151,7 +151,7 @@ server <- function(input, output) {
   
   # print out a textual summary
   output$summary <- renderText({
-    paste0("")
+    paste0("[summary info about the plots]")
   })
   
   output$racePlot <- renderPlot({
