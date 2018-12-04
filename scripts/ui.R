@@ -16,7 +16,9 @@ ui <- navbarPage(title = "GROUP AF3",
                           Brown and spurred movements, such as Black Lives Matter."),
                         tags$p("Our data comes from Washington Post's gathering of news reports, police 
                                departments, and social media. It documented police shootings since January 1, 
-                               2015 and gathers present updates. We have filtered our dataset based on 
+                               2015 and gathers present updates. We downloaded the dataset on December 1, 2018, 
+                               so our data relates to shootings only up until that date.
+                               We have filtered our dataset based on 
                                racial groups and the following factors:"),
                         tags$ul(
                           tags$li("Armed"),
