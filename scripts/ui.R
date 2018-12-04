@@ -3,8 +3,7 @@ library(dplyr)
 library(ggplot2)
 library(shinythemes)
 
-ui <- #pageWithSidebar(
-  navbarPage(title = "GROUP AF3",
+ui <- navbarPage(title = "GROUP AF3",
              theme = shinytheme("flatly"),
              tabPanel("Overview",
                       mainPanel(
