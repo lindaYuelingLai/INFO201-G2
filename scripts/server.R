@@ -160,12 +160,17 @@ server <- function(input, output) {
   })
   
   output$racePlot <- renderPlot({
-    race_data <- shooting_data %>% group_by(race) %>% summarise(n = n()) %>% arrange(desc(n))
-    # PieChart
-    bp<- ggplot(race_data, aes(race_data, x="race", y=n, fill=race))+
-      geom_bar(width = 1, stat = "identity")
-    pie <- bp + coord_polar("y", start=0)
-    pie
+    race_data <- shooting_data %>% filter(race != "" & race != "O") %>% group_by(race) %>% count() %>% ungroup() %>% mutate(per=`n`/sum(`n`)) %>% arrange(desc(race))
+    race_data$label <- scales::percent(race_data$per)
+    pie_chart <- ggplot(data = race_data)+
+      geom_bar(aes(x="", y=per, fill=race), stat="identity", width = 1)+
+      coord_polar("y", start=0)+
+      theme_void()+
+      geom_text(aes(x=1, y = cumsum(per) - per/2, label=label))+
+      scale_fill_discrete("race", 
+                          breaks=c("A", "B", "H", "N", "W"), 
+                          labels=c("Asian", "Black", "Hispanic", "Native American", "White"))
+    return(pie_chart)
   })
 }
 
