@@ -96,9 +96,9 @@ ui <- navbarPage(title = "GROUP AF3",
              tabPanel("Other Visuals",
                       headerPanel("Fatal Police Shootings in the US"),
                       sidebarPanel(
-                        h4("About the Graph:"),
-                        #h5("Pie Chart:"),
-                        helpText(HTML(paste0("The pie chart to the right displays the number of shootings 
+                        h4(strong("About the Graphs")),
+                        h5(strong("Pie Chart:")),
+                        p(HTML(paste0("The pie chart to the right displays the number of shootings
                                  per race, as a portion of the total shootings. As you can see,
                                  white individuals are the most commonly shot fatally by police. 
                                  However, the chart does not show what proportion of the total 
@@ -108,15 +108,21 @@ ui <- navbarPage(title = "GROUP AF3",
                                  " were black and ", scales::percent(filter(race_data, race=="W")$per), " were white. The latest estimates from the ", 
                                  a(href="https://www.census.gov/quickfacts/fact/table/US/PST045217", "U.S. Census Bureau"), 
                                  " indicate that only 13.4% of Americans are black and 76.6% are white. So proportionally, Black individuals have
-                                 higher number of fatal police shootings out of other race in the U.S.")))
+                                 higher number of fatal police shootings out of other race in the U.S."))),
+                        h5(strong("Map:")),
+                        p("The map displayed in the second tab to the right shows a geographical map
+                                 of Washington state, with each red dot representing where a fatal police
+                                 shooting has occurred. We have chosen to display this map to create a feel 
+                                 for what our own state's patterns for shootings are like. From how the 
+                                 dots are concentrated, you may notice how larger cities / their surrounding 
+                                 areas tend to have more shootings occur. This makes sense, as there is 
+                                 more crime, people, and minorities.")
                       ),
                       mainPanel(
                         tabsetPanel(
                           tabPanel("Pie Chart", plotOutput("racePlot")),
-                          tabPanel("Map", plotOutput("mapPlot"), 
-                                   paste0("The figure above shows a map of Washington's fatal shootings by police. 
-                                          The areas with the largest concentrations of shootings tend to occur in areas 
-                                          with dense populations, such as a large city like Seattle."))
+                          tabPanel("Map", plotOutput("mapPlot", hover = "plot_hover"), verbatimTextOutput("info"),
+                                   helpText("Hover over map to show coordinates."))
                         )
                       )),
              tabPanel("Summary",
