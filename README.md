@@ -3,7 +3,7 @@
 ## The Data
 We used a dataset of fatal shooting in the US for our project. This particular dataset 
 comes from the Washington Post. Data for this set began to be taken in January 2015,
-and it continues to be updated daily. The dataset can be found [here](https://www.washingtonpost.com/graphics/national/police-shootings-2016/). 
+and it continues to be updated daily. The dataset can be found [here](https://github.com/washingtonpost/data-police-shootings). 
 We have grouped the data by race to see if we can find a correlation between police and 
 racism, particularly towards people of color.  
 

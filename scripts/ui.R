@@ -33,7 +33,7 @@ ui <- navbarPage(title = "GROUP AF3",
                           tags$li("Fleeing / Not Fleeing")
                         ),
                         tags$p(HTML(paste0("The link to the dataset can be found ", 
-                                      a(href="https://www.washingtonpost.com/graphics/national/police-shootings-2016/", 
+                                      a(href="https://github.com/washingtonpost/data-police-shootings", 
                                         "here"), "."))),
                         tags$h3(strong("Audience")),
                         tags$p("In choosing who our audience would be, we considered the current political
@@ -174,8 +174,9 @@ ui <- navbarPage(title = "GROUP AF3",
                         tags$p(HTML(paste0("This ", a(href="https://www.washingtonpost.com/news/post-nation/wp/2016/07/11/arent-more-white-people-than-black-people-killed-by-police-yes-but-no/?utm_term=.bec825db615c", 
                                           "Washington Post article"), ", 'Aren't more white people killed 
                                           than black people killed by police? Yes, but no.' published in 2016 directly 
-                                          referenced the dataset we used and answers the same questions 
-                                          we are thinking."))),
+                                          references the dataset we used and answers the same questions 
+                                          we are thinking. (The data we use is updated until Dec 1, 2018 while Washington Post
+                                          used the data up until 2016, so the results here are different than ours)"))),
                         tags$ul(
                           tags$li("Data scientists note on our dataset that comparing just white people 
                                   and black people by the police is 'statistically dubious.' Affirming 
