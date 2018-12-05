@@ -16,13 +16,15 @@ ui <- navbarPage(title = "GROUP AF3",
                           Brown and spurred movements, such as Black Lives Matter."),
                         tags$p("Our data comes from Washington Post's gathering of news reports, police 
                                departments, and social media. It documented police shootings since January 1, 
-                               2015 and gathers present updates. We have filtered our dataset based on 
+                               2015 and gathers present updates. We downloaded the dataset on December 1, 2018, 
+                               so our data relates to shootings only up until that date.
+                               We have filtered our dataset based on 
                                racial groups and the following factors:"),
                         tags$ul(
-                          tags$li("Armed"),
+                          tags$li("Armed / Unarmed"),
                           tags$li("Perceived Mental Illness"),
                           tags$li("Perceived Threat Level"),
-                          tags$li("Fleeing")
+                          tags$li("Fleeing / Not Fleeing")
                         ),
                         tags$p(HTML(paste0("The link to the dataset can be found ", 
                                       a(href="https://www.washingtonpost.com/graphics/national/police-shootings-2016/", 
@@ -53,7 +55,7 @@ ui <- navbarPage(title = "GROUP AF3",
                           tags$li("What can the data tell us about police and civilian relationships depending on race?")
                         )
                       )),
-             tabPanel("Bar Plots: Race by Category",
+             tabPanel("Bar Plots",
                       # Application title
                       headerPanel("Fatal Police Shootings in the US"),
                       sidebarPanel(
@@ -74,12 +76,18 @@ ui <- navbarPage(title = "GROUP AF3",
                           tabPanel("Plot Info", textOutput("summary"))
                         )
                       )),
-             tabPanel("Other Visuals: Race Only",
+             tabPanel("Other Visuals",
                       headerPanel("Fatal Police Shootings in the US"),
                       sidebarPanel(
                         h4("About the Graphs"),
-                        helpText("summary info about pie chart here? 
-                                 + map graph with dots where shootings have occurred?")
+                        h5("Pie Chart:"),
+                        helpText("The pie chart to the right displays the number of shootings 
+                                 per race, as a portion of the total shootings. As you can see, 
+                                 White individuals are the most commonly shot fatally by police. 
+                                 However, the chart does not show what proportion of the total 
+                                 population of that race has been fatally shot, making the results hard to 
+                                 interpret without context. Proportionally, Black individuals have the 
+                                 highest number of fatal police shootings out of any other race in the U.S.")
                       ),
                       mainPanel(
                         tabsetPanel(
