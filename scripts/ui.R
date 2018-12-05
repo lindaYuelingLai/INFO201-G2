@@ -4,7 +4,7 @@ library(ggplot2)
 library(shinythemes)
 library(scales)
 # read in necessary data files
-shooting_data <- read.csv("../shootings_data.csv", stringsAsFactors = FALSE)
+shooting_data <- read.csv("shootings_data.csv", stringsAsFactors = FALSE)
 race_data <- shooting_data %>% filter(race != "" & race != "O") %>% group_by(race) %>% 
              count() %>% ungroup() %>% mutate(per=`n`/sum(`n`)) %>% arrange(desc(race))
 
