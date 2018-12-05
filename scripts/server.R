@@ -182,7 +182,7 @@ server <- function(input, output) {
       geom_polygon(aes(x = long, y = lat, group = group), color = "white") + 
       coord_fixed(1.3) +
       geom_point(data=cities, aes(x=lon, y=lat, size=0.5), color="red") +
-      ggtitle("WA State with Shootings by City") +
+      ggtitle("WA State, Shootings by City") +
       theme(plot.title=element_text(size=15,face="bold")) +
       guides(fill=FALSE)
     map
