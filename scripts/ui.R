@@ -3,7 +3,8 @@ library(dplyr)
 library(ggplot2)
 library(shinythemes)
 shooting_data <- read.csv("../shootings_data.csv", stringsAsFactors = FALSE)
-race_data <- shooting_data %>% filter(race != "" & race != "O") %>% group_by(race) %>% count() %>% ungroup() %>% mutate(per=`n`/sum(`n`)) %>% arrange(desc(race))
+race_data <- shooting_data %>% filter(race != "" & race != "O") %>% group_by(race) %>% 
+             count() %>% ungroup() %>% mutate(per=`n`/sum(`n`)) %>% arrange(desc(race))
 
 ui <- navbarPage(title = "GROUP AF3",
              theme = shinytheme("flatly"),

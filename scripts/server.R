@@ -181,6 +181,7 @@ server <- function(input, output) {
       coord_fixed(1.3) +
       geom_point(data=cities, aes(x=lon, y=lat, size=0.5), color="red") +
       guides(fill=FALSE)
+    map
   })
 }
 
