@@ -96,8 +96,8 @@ ui <- navbarPage(title = "GROUP AF3",
              tabPanel("Other Visuals",
                       headerPanel("Fatal Police Shootings in the US"),
                       sidebarPanel(
-                        h4("About the Graphs"),
-                        h5("Pie Chart:"),
+                        h4("About the Graph:"),
+                        #h5("Pie Chart:"),
                         helpText(HTML(paste0("The pie chart to the right displays the number of shootings 
                                  per race, as a portion of the total shootings. As you can see,
                                  white individuals are the most commonly shot fatally by police. 
@@ -113,7 +113,10 @@ ui <- navbarPage(title = "GROUP AF3",
                       mainPanel(
                         tabsetPanel(
                           tabPanel("Pie Chart", plotOutput("racePlot")),
-                          tabPanel("Map", plotOutput("mapPlot"))
+                          tabPanel("Map", plotOutput("mapPlot"), 
+                                   paste0("The figure above shows a map of Washington's fatal shootings by police. 
+                                          The areas with the largest concentrations of shootings tend to occur in areas 
+                                          with dense populations, such as a large city like Seattle."))
                         )
                       )),
              tabPanel("Summary",
