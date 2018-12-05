@@ -156,11 +156,6 @@ server <- function(input, output) {
     if (input$factors=="flee") { print(race_by_flee(input$race)) }
   })
   
-  # print out a textual summary
-  output$summary <- renderText({
-    paste0("[summary info about the plots]")
-  })
-  
   # Displays additional visuals to represent fatal shootings by race
   output$racePlot <- renderPlot({
     race_data <- shooting_data %>% filter(race != "" & race != "O") %>% group_by(race) %>% count() %>% ungroup() %>% mutate(per=`n`/sum(`n`)) %>% arrange(desc(race))
