@@ -82,13 +82,13 @@ ui <- navbarPage(title = "GROUP AF3",
                                           police in each state, depending on the race selected in the side panel. Across 
                                           the races, California consistently has the largest number of shootings. This 
                                           is likely due to California having the largest state population in the nation and 
-                                          does not reflect the number of shootings in proportional to the state's overall 
+                                          does not reflect the number of shootings in proportion to the state's overall 
                                           population."),
                                    h3("Fatal Shootings Based on Additional Factors"),
                                    paste0("The second bar plot shows the shooting statistics based on an additional factor selected 
                                           in addition to the race selected previously in the side panel. The four factors the user 
                                           can choose from are whether or not the victim was armed, signs of mental illness, threat 
-                                          of the victim, and whether or not the victim was fleeing.This graph intends to show that 
+                                          of the victim, and whether or not the victim was fleeing. This graph intends to show that 
                                           additional factors may influence the likelihood of being fatally shot and the impact of 
                                           each of these factors on each race's statistics.")
                           )
