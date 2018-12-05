@@ -9,7 +9,7 @@ racism, particularly towards people of color.
 
 ## The Application    
 [**Our project application**](https://liarose.shinyapps.io/info201-af3/), uses 
-the Shiny app server. We illustrate the data in several ways, ranging from bar plots to a pie chart  
+the Shiny app server. We illustrate the data in several ways, ranging from bar plots to a pie chart 
 and geographical map. The data for the bar plots can also be filtered in several ways to 
 visualize how each race (or all races) may be affected by police shootings/behavior. Data can 
 also be filtered by other factors, such as any arms the victim might have been carrying,
