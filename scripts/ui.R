@@ -2,6 +2,8 @@ library(shiny)
 library(dplyr)
 library(ggplot2)
 library(shinythemes)
+shooting_data <- read.csv("../shootings_data.csv", stringsAsFactors = FALSE)
+race_data <- shooting_data %>% filter(race != "" & race != "O") %>% group_by(race) %>% count() %>% ungroup() %>% mutate(per=`n`/sum(`n`)) %>% arrange(desc(race))
 
 ui <- navbarPage(title = "GROUP AF3",
              theme = shinytheme("flatly"),
@@ -81,13 +83,17 @@ ui <- navbarPage(title = "GROUP AF3",
                       sidebarPanel(
                         h4("About the Graphs"),
                         h5("Pie Chart:"),
-                        helpText("The pie chart to the right displays the number of shootings 
-                                 per race, as a portion of the total shootings. As you can see, 
-                                 White individuals are the most commonly shot fatally by police. 
+                        helpText(HTML(paste0("The pie chart to the right displays the number of shootings 
+                                 per race, as a portion of the total shootings. As you can see,
+                                 white individuals are the most commonly shot fatally by police. 
                                  However, the chart does not show what proportion of the total 
                                  population of that race has been fatally shot, making the results hard to 
-                                 interpret without context. Proportionally, Black individuals have the 
-                                 highest number of fatal police shootings out of any other race in the U.S.")
+                                 interpret without context. Actually, of the ", nrow(shooting_data), " deaths logged so far", 
+                                 " and for which there was information on race, ", scales::percent(filter(race_data, race=="B")$per), 
+                                 " were black and ", scales::percent(filter(race_data, race=="W")$per), " were white. The latest estimates from the ", 
+                                 a(href="https://www.census.gov/quickfacts/fact/table/US/PST045217", "U.S. Census Bureau"), 
+                                 " indicate that only 13.4% of Americans are black and 76.6% are white. So proportionally, Black individuals have
+                                 higher number of fatal police shootings out of other race in the U.S.")))
                       ),
                       mainPanel(
                         tabsetPanel(
