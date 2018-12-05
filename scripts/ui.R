@@ -12,7 +12,7 @@ ui <- navbarPage(title = "GROUP AF3",
              theme = shinytheme("flatly"), # color / display theme for shiny application page
              # tab for introduction / overview page for project & dataset
              tabPanel("Overview",
-                      mainPanel(
+                      mainPanel(width = 9,
                         tags$h1("Overview of the Data"),
                         tags$h3(strong("Intro")),
                         tags$p("Our dataset encompasses fatal shootings by the police force in the U.S., 
@@ -59,7 +59,12 @@ ui <- navbarPage(title = "GROUP AF3",
                           tags$li("What was the incident (a crime, attack, intent, or mere interaction) within 
                                   these situations? Does the data tell us about police brutality or self-defense?"),
                           tags$li("What can the data tell us about police and civilian relationships depending on race?")
-                        )
+                        ),
+                        tags$h3(strong("About Us")),
+                        tags$p("Authors: Trish Hoy, Lia Kitahata, Linda (Yueling) Lai, Nikki Mogadas"),
+                        tags$p("We are all students at the University of Washington, taking INFO201:
+                               Technical Foundations. This class teaches us the basics of R programming,
+                               and we hope that our learning is well reflected in our final project. Enjoy!")
                       )),
              # tab for bar plots where user can choose/filter what kind of data to display
              tabPanel("Bar Plots",
@@ -130,7 +135,7 @@ ui <- navbarPage(title = "GROUP AF3",
              # tab for the conclusion / summary page
              # includes explanations and research related to our and data initial hypotheses
              tabPanel("Summary",
-                      mainPanel(
+                      mainPanel(width = 9,
                         tags$h1("Summary"),
                         tags$h3(strong("Data Analytics Hypotheses")),
                         tags$p("We were surprised to see graphs with more shootings of white people 
