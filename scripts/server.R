@@ -8,7 +8,7 @@ server <- function(input, output) {
   # read in large dataset for fatal shooting in the US
   # dataset is very current (the one used for our project is taken from 12/01/2018)
   shooting_data <- read.csv("../shootings_data.csv", stringsAsFactors = FALSE)
- 
+
   # return bar graph for the specified race, grouped by state
   output$statePlot <- renderPlot({
     race_by_state <- function(the_race) {
