@@ -20,5 +20,13 @@ The shiny application itself is split into four tabs:
 * Overview  
 * Bar Plots  
 * Other Visuals  
-* Summary    
+* Summary   
+
+Our overall goal with this project and this particular topic is to bring awareness to
+police brutality, and to help people understand that this is a major problem in America
+that is easy to ignore or look past when you are not the one being shot at. Of course,
+not all fatal police shooting are born out of racism, but it is nonetheless extremely
+important to take note of how systemic racism can play a significant role in how 
+someone is treated, and how people treat others, even when they do not always mean to, 
+or do not realize they are doing so. 
 
