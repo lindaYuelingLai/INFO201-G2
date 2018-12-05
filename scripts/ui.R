@@ -2,7 +2,7 @@ library(shiny)
 library(dplyr)
 library(ggplot2)
 library(shinythemes)
-
+library(scales)
 # read in necessary data files
 shooting_data <- read.csv("../shootings_data.csv", stringsAsFactors = FALSE)
 race_data <- shooting_data %>% filter(race != "" & race != "O") %>% group_by(race) %>% 
@@ -100,17 +100,17 @@ ui <- navbarPage(title = "GROUP AF3",
                       sidebarPanel(
                         h4(strong("About the Graphs")),
                         h5(strong("Pie Chart:")),
-                        p(HTML(paste0("The pie chart to the right displays the number of shootings
-                                 per race, as a portion of the total shootings. As you can see,
-                                 white individuals are the most commonly shot fatally by police. 
+                        p(HTML(paste0("The pie chart to the right displays the percentages of fatal police shootings
+                                 by race. As you can see,
+                                 white individuals have the highest percentage. 
                                  However, the chart does not show what proportion of the total 
                                  population of that race has been fatally shot, making the results hard to 
                                  interpret without context. Actually, of the ", nrow(shooting_data), " deaths logged so far", 
-                                 " and for which there was information on race, ", scales::percent(filter(race_data, race=="B")$per), 
-                                 " were black and ", scales::percent(filter(race_data, race=="W")$per), " were white. The latest estimates from the ", 
+                                 " and for which there was information on race, ", percent(filter(race_data, race=="B")$per), 
+                                 " were black, and ", percent(filter(race_data, race=="W")$per), " were white. The latest estimates from the ", 
                                  a(href="https://www.census.gov/quickfacts/fact/table/US/PST045217", "U.S. Census Bureau"), 
-                                 " indicate that only 13.4% of Americans are black and 76.6% are white. So proportionally, Black individuals have
-                                 higher number of fatal police shootings out of other race in the U.S."))),
+                                 " indicate that only 13.4% of Americans are black and 60.7% are white. This suggests that 
+                                 black Americans are disproportionately likely to be fatally shot by police in the U.S."))),
                         h5(strong("Map:")),
                         p("The map displayed in the second tab to the right shows a geographical map
                                  of Washington state, with each red dot representing where a fatal police
@@ -173,9 +173,9 @@ ui <- navbarPage(title = "GROUP AF3",
                         ),
                         tags$p(HTML(paste0("This ", a(href="https://www.washingtonpost.com/news/post-nation/wp/2016/07/11/arent-more-white-people-than-black-people-killed-by-police-yes-but-no/?utm_term=.bec825db615c", 
                                           "Washington Post article"), ", 'Aren't more white people killed 
-                                          than black people killed by police? Yes, but no.' directly 
-                                          references the dataset we used and answers the same questions 
-                                          were thinking."))),
+                                          than black people killed by police? Yes, but no.' published in 2016 directly 
+                                          referenced the dataset we used and answers the same questions 
+                                          we are thinking."))),
                         tags$ul(
                           tags$li("Data scientists note on our dataset that comparing just white people 
                                   and black people by the police is 'statistically dubious.' Affirming 
@@ -192,12 +192,20 @@ ui <- navbarPage(title = "GROUP AF3",
                                   )
                         ),
                         tags$h3(strong("Conclusion")),
-                        tags$p("Looking solely at our charts and numbers alone, white deaths by 
+                        tags$p(HTML(paste0("Looking solely at our charts and numbers alone, white deaths by 
                                police shootings are the highest. However, this does not accurately 
                                represent the proportions by which people are shot and killed by 
-                               police according to their race. Therefore, factoring in our population
-                               as a whole, we can conclude that people of color are typically more
-                               targeted by police than their white peers.")
+                               police according to their race. Actually, of the ", nrow(shooting_data), 
+                               " deaths logged so far", " and for which there was information on race, ", 
+                               percent(filter(race_data, race=="W")$per), " were white, ", percent(filter(race_data, race=="B")$per), 
+                               " black, " , percent(filter(race_data, race=="H")$per), " Hispanic, ", 
+                               percent(filter(race_data, race=="N")$per), " Native American, and ", percent(filter(race_data, race=="A")$per),
+                               " Asian. The latest estimates from the ", 
+                                 a(href="https://www.census.gov/quickfacts/fact/table/US/PST045217", "U.S. Census Bureau"), 
+                                 " indicate that 76.6% of Americans are white, 13.4% black, 18.1% Hispanic, and 5.8% Asian. This suggests 
+                               that the percentages by race skew further from the general population, especially that black Americans are 
+                               disproportionately likely to be fatally shot by police in the U.S. Therefore, factoring in our population
+                               as a whole, we can conclude that people of color are typically more targeted by police than their white peers." )))
                       ))
   )
 
