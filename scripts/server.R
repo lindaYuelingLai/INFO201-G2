@@ -3,7 +3,6 @@ library(dplyr)
 library(ggplot2)
 library(mapdata)
 library(maps)
-library(ggmap)
 
 server <- function(input, output) {
   shooting_data <- read.csv("../shootings_data.csv", stringsAsFactors = FALSE)
