@@ -1,6 +1,9 @@
 library(shiny)
 library(dplyr)
 library(ggplot2)
+library(mapdata)
+library(maps)
+library(ggmap)
 
 server <- function(input, output) {
   shooting_data <- read.csv("../shootings_data.csv", stringsAsFactors = FALSE)
@@ -143,7 +146,7 @@ server <- function(input, output) {
       return(result_plot)
     }
     
-    if (input$factors=="armed"){ print(race_by_armed(input$race)) }
+    if (input$factors=="armed") { print(race_by_armed(input$race)) }
     if (input$factors=="mental") { print(race_by_mental_illness(input$race)) }
     if (input$factors=="threat") { print(race_by_threat(input$race)) }
     if (input$factors=="flee") { print(race_by_flee(input$race)) }
@@ -154,6 +157,7 @@ server <- function(input, output) {
     paste0("[summary info about the plots]")
   })
   
+  # Displays additional visuals to represent fatal shootings by race
   output$racePlot <- renderPlot({
     race_data <- shooting_data %>% group_by(race) %>% summarise(n = n()) %>% arrange(desc(n))
     # PieChart
@@ -161,6 +165,17 @@ server <- function(input, output) {
       geom_bar(width = 1, stat = "identity")
     pie <- bp + coord_polar("y", start=0)
     pie
+  })
+  
+  output$mapPlot <- renderPlot({
+    wa_map_data <- map_data("state", region="washington")
+    cities <- read.csv("../wa_cities.csv", stringsAsFactors = FALSE)
+    map <- ggplot(data = wa_map_data) + 
+      geom_polygon(aes(x = long, y = lat, group = group), color = "white") + 
+      coord_fixed(1.3) +
+      geom_point(data=cities, aes(x=lon, y=lat, size=0.5), color="red") +
+      guides(fill=FALSE)
+    map
   })
 }
 

@@ -82,7 +82,10 @@ ui <- navbarPage(title = "GROUP AF3",
                                  + map graph with dots where shootings have occurred?")
                       ),
                       mainPanel(
-                        plotOutput("racePlot")
+                        tabsetPanel(
+                          tabPanel("Pie Chart", plotOutput("racePlot")),
+                          tabPanel("Map", plotOutput("mapPlot"))
+                        )
                       )),
              tabPanel("Summary",
                       mainPanel(
