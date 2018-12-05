@@ -178,7 +178,6 @@ server <- function(input, output) {
   
   output$mapPlot <- renderPlot({
     wa_map_data <- map_data("state", region="washington")
-    #cities <- read.csv("../wa_cities.csv", stringsAsFactors = FALSE)
     map <- ggplot(data = wa_map_data) + 
       geom_polygon(aes(x = long, y = lat, group = group), color = "white") + 
       coord_fixed(1.3) +
@@ -191,7 +190,7 @@ server <- function(input, output) {
   
   output$info <- renderText({
     xy_str <- function(position) {
-      if(is.null(position)) return("NULL\n")
+      if(is.null(position)) return("None")
         paste0(round(position$y, 4), "ºN, ", abs(round(position$x, 4)), "ºW")
     }
     paste0("Coordinate: ", xy_str(input$plot_hover))
