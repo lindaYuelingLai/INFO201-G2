@@ -5,8 +5,8 @@ account: liarose
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 604576
-bundleId: 1741801
+bundleId: 1741946
 url: https://liarose.shinyapps.io/info201-af3/
-when: 1543996544.52771
+when: 1544001090.49842
 asMultiple: FALSE
 asStatic: FALSE
