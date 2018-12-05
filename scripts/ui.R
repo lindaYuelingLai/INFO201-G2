@@ -80,11 +80,20 @@ ui <- navbarPage(title = "GROUP AF3",
                       headerPanel("Fatal Police Shootings in the US"),
                       sidebarPanel(
                         h4("About the Graphs"),
-                        helpText("summary info about pie chart here? 
-                                 + map graph with dots where shootings have occurred?")
+                        h5("Pie Chart:"),
+                        helpText("The pie chart to the right displays the number of shootings 
+                                 per race, as a portion of the total shootings. As you can see, 
+                                 White individuals are the most commonly shot fatally by police. 
+                                 However, the chart does not show what proportion of the total 
+                                 population of that race has been fatally shot, making the results hard to 
+                                 interpret without context. Proportionally, Black individuals have the 
+                                 highest number of fatal police shootings out of any other race in the U.S.")
                       ),
                       mainPanel(
-                        plotOutput("racePlot")
+                        tabsetPanel(
+                          tabPanel("Pie Chart", plotOutput("racePlot")),
+                          tabPanel("Map", plotOutput("mapPlot"))
+                        )
                       )),
              tabPanel("Summary",
                       mainPanel(
