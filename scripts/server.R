@@ -165,7 +165,9 @@ server <- function(input, output) {
     pie_chart <- ggplot(data = race_data)+
       geom_bar(aes(x="", y=per, fill=race), stat="identity", width = 1)+
       coord_polar("y", start=0)+
+      ggtitle("Fatal Police Shootings by Race")+
       theme_void()+
+      theme(plot.title=element_text(size=15,face="bold"))+
       geom_text(aes(x=1, y = cumsum(per) - per/2, label=label))+
       scale_fill_discrete("race", 
                           breaks=c("A", "B", "H", "N", "W"), 
