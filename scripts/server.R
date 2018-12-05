@@ -7,7 +7,7 @@ library(maps)
 server <- function(input, output) {
   # read in large dataset for fatal shooting in the US
   # dataset is very current (the one used for our project is taken from 12/01/2018)
-  shooting_data <- read.csv("shootings_data.csv", stringsAsFactors = FALSE)
+  shooting_data <- read.csv("data/shootings_data.csv", stringsAsFactors = FALSE)
 
   # return bar graph for the specified race, grouped by state
   output$statePlot <- renderPlot({
@@ -180,7 +180,7 @@ server <- function(input, output) {
   })
   
   # dataset of cities in Washington state for plotting map
-  cities <- read.csv("wa_cities.csv", stringsAsFactors = FALSE)
+  cities <- read.csv("data/wa_cities.csv", stringsAsFactors = FALSE)
   
   # plots map of Washington state, with red dots representing where a fatal police shooting occurred 
   output$mapPlot <- renderPlot({
