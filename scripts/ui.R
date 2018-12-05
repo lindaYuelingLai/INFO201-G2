@@ -49,7 +49,7 @@ ui <- navbarPage(title = "GROUP AF3",
                                will better understand the magnitude of this problem and will continue 
                                to spread awareness about it through educating others. In doing so, 
                                society can gradually become more socially aware of systemic 
-                               racism and we can work to end racism as a whole. Our audience hopes to 
+                               racism and we can work to end racism as a whole. Our audience may hope to 
                                learn more about the following questions regarding this topic:"),
                         tags$ul(
                           tags$li("Who is being disproportionately targeted in police brutality and killing incidents?"),
