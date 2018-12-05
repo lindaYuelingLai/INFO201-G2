@@ -23,7 +23,7 @@ The shiny application itself is split into four tabs:
 * Summary   
 
 ## The Authors
-Trish Hoy, Lia Kitahata, Linda (Yueling) Lai, Nikki Mogadas  
+*Trish Hoy, Lia Kitahata, Linda (Yueling) Lai, Nikki Mogadas*  
 
 Our overall goal with this project and this particular topic is to bring awareness to
 police brutality, and to help people understand that this is a major problem in America
