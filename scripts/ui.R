@@ -2,12 +2,15 @@ library(shiny)
 library(dplyr)
 library(ggplot2)
 library(shinythemes)
+
+# read in necessary data files
 shooting_data <- read.csv("../shootings_data.csv", stringsAsFactors = FALSE)
 race_data <- shooting_data %>% filter(race != "" & race != "O") %>% group_by(race) %>% 
              count() %>% ungroup() %>% mutate(per=`n`/sum(`n`)) %>% arrange(desc(race))
 
 ui <- navbarPage(title = "GROUP AF3",
-             theme = shinytheme("flatly"),
+             theme = shinytheme("flatly"), # color / display theme for shiny application page
+             # tab for introduction / overview page for project & dataset
              tabPanel("Overview",
                       mainPanel(
                         tags$h1("Overview of the Data"),
@@ -58,16 +61,14 @@ ui <- navbarPage(title = "GROUP AF3",
                           tags$li("What can the data tell us about police and civilian relationships depending on race?")
                         )
                       )),
+             # tab for bar plots where user can choose/filter what kind of data to display
              tabPanel("Bar Plots",
-                      # Application title
                       headerPanel("Fatal Police Shootings in the US"),
                       sidebarPanel(
                         radioButtons("race", h3("Select a race:"),
                                      c("All" = "all","White" = "W","Black" = "B","Asian"="A",
                                        "Native American"="N","Hispanic"="H")),
-                        
                         br(),
-                        
                         selectInput("factors", h3("Other factors describing victim:"), 
                                     c("Armed"="armed","Signs of Mental Illness"="mental","Threat Level"="threat","Fleeing"="flee"), 
                                     selected = NULL, multiple = FALSE,
@@ -93,6 +94,7 @@ ui <- navbarPage(title = "GROUP AF3",
                                           each of these factors on each race's statistics.")
                           )
                       ))),
+             # tab for additional visuals (pie chart, map) to give different perspective of the dataset 
              tabPanel("Other Visuals",
                       headerPanel("Fatal Police Shootings in the US"),
                       sidebarPanel(
@@ -125,6 +127,8 @@ ui <- navbarPage(title = "GROUP AF3",
                                    helpText("Hover over map to show coordinates."))
                         )
                       )),
+             # tab for the conclusion / summary page
+             # includes explanations and research related to our and data initial hypotheses
              tabPanel("Summary",
                       mainPanel(
                         tags$h1("Summary"),

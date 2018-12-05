@@ -5,10 +5,11 @@ library(mapdata)
 library(maps)
 
 server <- function(input, output) {
+  # read in large dataset for fatal shooting in the US
+  # dataset is very current (the one used for our project is taken from 12/01/2018)
   shooting_data <- read.csv("../shootings_data.csv", stringsAsFactors = FALSE)
-  cities <- read.csv("../wa_cities.csv", stringsAsFactors = FALSE)
  
-   # return bar graph for the specified race, grouped by state
+  # return bar graph for the specified race, grouped by state
   output$statePlot <- renderPlot({
     race_by_state <- function(the_race) {
       title <- ""
@@ -39,8 +40,8 @@ server <- function(input, output) {
     race_by_state(input$race)
   })
 
+  # return bar graph for the specified race, grouped by arm(s) held by victim
   output$factorsPlot <- renderPlot({
-
     race_by_armed <- function(the_race) {
       title <- ""
       armed_data <- shooting_data
@@ -69,6 +70,7 @@ server <- function(input, output) {
         return(result_plot)
     }
     
+    # return bar graph for the specified race, grouped by whether victim showed signs of mental illness
     race_by_mental_illness <- function(the_race) {
       title <- ""
       mi_data <- shooting_data
@@ -97,6 +99,7 @@ server <- function(input, output) {
         return(result_plot)
       }
     
+    # return bar graph for the specified race, grouped by whether the victim tried to flee or not
     race_by_flee <- function(the_race) {
       title <- ""
       flee_data <- shooting_data
@@ -125,6 +128,7 @@ server <- function(input, output) {
       return(result_plot)
     }
 
+    # return bar graph for the specified race, grouped by threat level
     race_by_threat <- function(the_race) {
       title <- ""
       threat_data <- shooting_data
@@ -151,14 +155,13 @@ server <- function(input, output) {
               plot.title=element_text(size=15,face="bold"))
       return(result_plot)
     }
-    
     if (input$factors=="armed") { print(race_by_armed(input$race)) }
     if (input$factors=="mental") { print(race_by_mental_illness(input$race)) }
     if (input$factors=="threat") { print(race_by_threat(input$race)) }
     if (input$factors=="flee") { print(race_by_flee(input$race)) }
   })
   
-  # Displays additional visuals to represent fatal shootings by race
+  # plots pie chart of what percentages of fatal shootings each race called for
   output$racePlot <- renderPlot({
     race_data <- shooting_data %>% filter(race != "" & race != "O") %>% group_by(race) %>% 
                  count() %>% ungroup() %>% mutate(per=`n`/sum(`n`)) %>% arrange(desc(race))
@@ -173,9 +176,13 @@ server <- function(input, output) {
       scale_fill_discrete("race", 
                           breaks=c("A", "B", "H", "N", "W"), 
                           labels=c("Asian", "Black", "Hispanic", "Native American", "White"))
-    return(pie_chart)
+    pie_chart
   })
   
+  # dataset of cities in Washington state for plotting map
+  cities <- read.csv("../wa_cities.csv", stringsAsFactors = FALSE)
+  
+  # plots map of Washington state, with red dots representing where a fatal police shooting occurred 
   output$mapPlot <- renderPlot({
     wa_map_data <- map_data("state", region="washington")
     map <- ggplot(data = wa_map_data) + 
@@ -188,12 +195,13 @@ server <- function(input, output) {
     map
   })
   
+  # displays the current coordinate on the map that the user hovers their mouse over
   output$info <- renderText({
-    xy_str <- function(position) {
+    get_coord <- function(position) {
       if(is.null(position)) return("None")
         paste0(round(position$y, 4), "ºN, ", abs(round(position$x, 4)), "ºW")
     }
-    paste0("Coordinate: ", xy_str(input$plot_hover))
+    paste0("Coordinate: ", get_coord(input$plot_hover))
   })
 }
 
