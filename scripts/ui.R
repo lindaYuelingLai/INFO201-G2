@@ -195,7 +195,7 @@ ui <- navbarPage(title = "GROUP AF3",
                         tags$p(HTML(paste0("Looking solely at our charts and numbers alone, white deaths by 
                                police shootings are the highest. However, this does not accurately 
                                represent the proportions by which people are shot and killed by 
-                               police according to their race. Actually, of the ", nrow(shooting_data), 
+                               police according to their race because of the population factor. Actually, of the ", nrow(shooting_data), 
                                " deaths logged so far", " and for which there was information on race, ", 
                                percent(filter(race_data, race=="W")$per), " were white, ", percent(filter(race_data, race=="B")$per), 
                                " black, " , percent(filter(race_data, race=="H")$per), " Hispanic, ", 
